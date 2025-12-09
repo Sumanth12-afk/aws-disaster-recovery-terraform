@@ -1,0 +1,179 @@
+# Terraform files
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+*.tfvars
+*.tfvars.json
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+
+# Terraform plan files
+*.tfplan
+tfplan
+
+# Terraform lock file (optional - uncomment if you want to ignore it)
+# .terraform.lock.hcl
+
+# Lambda deployment packages
+*.zip
+lambda.zip
+*.jar
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# PyCharm
+.idea/
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+.*.swp
+.*.swo
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+
+# Logs
+*.log
+logs/
+*.out
+*.err
+terraform.log
+terraform-*.log
+
+# AWS credentials and keys
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+credentials
+credentials.json
+aws-credentials
+.aws/
+
+# Sensitive data
+secrets.txt
+secrets.yml
+secrets.yaml
+.env
+.env.local
+.env.*.local
+config.local.yml
+*.secret
+
+# Backup files
+*.backup
+*.bak
+*.orig
+*.tmp
+*.temp
+
+# Response files from Lambda invocations
+response.json
+output.json
+
+# DR readiness reports
+dr-report-*.txt
+dr-readiness-*.txt
+
+# Test files
+test/
+tests/
+*.test.js
+*.spec.js
+
+# Coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Documentation builds
+docs/_build/
+site/
+
+# Archives
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.rar
+*.7z
+
+# Generated files
+plan.txt
+destroy.tfplan
+
+# Node modules (if using any JS tools)
+node_modules/
+
+# Terraform state backups
+terraform.tfstate.backup.*
+
+# Sensitive outputs
+sensitive-outputs.txt
+

@@ -1,0 +1,146 @@
+# =============================================================================
+# AWS DRaaS Terraform Variables - Example Configuration
+# =============================================================================
+# 
+# IMPORTANT: 
+# 1. Copy this file to terraform.tfvars
+# 2. Update all values with your actual configuration
+# 3. Never commit terraform.tfvars to version control (already in .gitignore)
+#
+# Usage:
+#   cp terraform.tfvars.example terraform.tfvars
+#   # Edit terraform.tfvars with your values
+#   terraform init
+#   terraform plan
+#   terraform apply
+# =============================================================================
+
+# Project Configuration
+project_name = "drass"
+environment  = "prod"  # Options: dev, staging, prod
+
+# AWS Region Configuration
+primary_region = "us-east-1"  # Primary region for resources
+dr_region      = "us-west-2"  # DR/backup region
+
+# Enable/Disable DR (set to false to disable DR resources for cost savings in dev)
+enable_dr = true
+
+# Network Configuration
+vpc_cidr = "10.0.0.0/16"
+
+# RDS Configuration
+db_instance_class  = "db.t3.micro"       # Options: db.t3.micro, db.t3.small, db.t3.medium
+db_engine_version  = "8.0.39"            # MySQL version
+db_allocated_storage = 20                # Storage in GB
+db_name            = "myappdb"           # Database name
+db_username        = "admin"             # Master username
+
+# IMPORTANT: Change this password!
+db_password        = "CHANGE_ME_SecurePassword123!"  # Use AWS Secrets Manager in production
+
+# DynamoDB Configuration
+dynamodb_table_name     = "drass-table"
+dynamodb_read_capacity  = 5              # Provisioned read capacity units
+dynamodb_write_capacity = 5              # Provisioned write capacity units
+
+# Backup Configuration
+backup_schedule        = "cron(0 2 * * ? *)"  # Daily at 2 AM UTC
+backup_retention_days  = 35                    # Days to keep backups in primary region
+backup_dr_retention_days = 120                 # Days to keep backups in DR region
+
+# EC2 Snapshot Schedule
+ec2_snapshot_schedule = "cron(0 1 * * ? *)"    # Daily at 1 AM UTC
+
+# Monitoring & Alerting
+alert_email = "your-email@example.com"  # Email for CloudWatch alarm notifications
+
+# Tags (applied to all resources)
+tags = {
+  Project     = "DRaaS"
+  Environment = "Production"
+  ManagedBy   = "Terraform"
+  Owner       = "DevOps Team"
+  CostCenter  = "IT-Infrastructure"
+}
+
+# =============================================================================
+# Advanced Configuration (Optional)
+# =============================================================================
+
+# Uncomment and modify these if you need custom settings
+
+# RDS Multi-AZ (more expensive, higher availability)
+# db_multi_az = false
+
+# RDS backup window (UTC)
+# db_backup_window = "03:00-04:00"
+
+# RDS maintenance window (UTC)
+# db_maintenance_window = "sun:04:00-sun:05:00"
+
+# RDS deletion protection
+# db_deletion_protection = true
+
+# S3 lifecycle rules
+# s3_lifecycle_enabled = true
+# s3_transition_days = 90
+# s3_expiration_days = 365
+
+# CloudWatch log retention
+# cloudwatch_log_retention_days = 30
+
+# Lambda timeout and memory
+# lambda_timeout = 300
+# lambda_memory = 256
+
+# =============================================================================
+# Environment-Specific Examples
+# =============================================================================
+
+# Development Environment:
+# project_name = "drass"
+# environment = "dev"
+# db_instance_class = "db.t3.micro"
+# enable_dr = false
+# backup_retention_days = 7
+
+# Staging Environment:
+# project_name = "drass"
+# environment = "staging"
+# db_instance_class = "db.t3.small"
+# enable_dr = true
+# backup_retention_days = 14
+
+# Production Environment:
+# project_name = "drass"
+# environment = "prod"
+# db_instance_class = "db.t3.medium"
+# enable_dr = true
+# backup_retention_days = 35
+# db_deletion_protection = true
+# db_multi_az = true
+
+# =============================================================================
+# Security Notes
+# =============================================================================
+#
+# 1. Database Passwords:
+#    - Never use simple passwords
+#    - Use AWS Secrets Manager for production: 
+#      https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/secretsmanager_secret
+#
+# 2. Email Alerts:
+#    - Use a distribution list or PagerDuty integration
+#    - Ensure someone monitors this email 24/7
+#
+# 3. KMS Keys:
+#    - Automatic key rotation is enabled by default
+#    - Keys have 30-day deletion window
+#
+# 4. IAM:
+#    - All roles follow least privilege principle
+#    - Review IAM policies regularly
+#
+# =============================================================================
+
