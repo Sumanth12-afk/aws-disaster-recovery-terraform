@@ -55,6 +55,17 @@ This DRaaS solution provides comprehensive disaster recovery capabilities across
 
 ### High-Level Design
 
+![AWS DRaaS Architecture](docs/architecture-diagram.png)
+
+*Multi-region disaster recovery architecture with automated cross-region replication and failover capabilities*
+
+**📄 Detailed Documentation:**
+- 📊 [Architecture Diagram](docs/architecture-diagram.png) - Visual representation of the complete system
+- 📋 [Technical Specification](docs/specification.pdf) - Detailed technical specifications and design decisions
+- 📖 [Case Study](docs/case-study.pdf) - Real-world implementation and results
+
+### Text Representation
+
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                    PRIMARY REGION (us-east-1)                │
@@ -703,13 +714,58 @@ aws cloudwatch describe-alarms --alarm-names drass-prod-rds-replica-lag
 
 ---
 
-## 📚 Additional Documentation
+## 📚 Documentation
 
-- [Commands Reference](commands.md) - All CLI commands
-- [Challenges & Solutions](challenges.md) - Problems encountered and fixes
-- [Security Guide](security.md) - Security implementation details
-- [API Reference](docs/API.md) - Terraform module APIs
-- [Runbooks](docs/RUNBOOKS.md) - Operational procedures
+### Core Documentation
+
+- **[commands.md](drass-terraform/commands.md)** - Complete CLI commands reference (994 lines)
+  - Terraform operations
+  - AWS CLI commands
+  - DR procedures and testing
+  - Monitoring and debugging
+
+- **[challenges.md](drass-terraform/challenges.md)** - Problems & solutions (907 lines)
+  - 18 documented challenges
+  - Root cause analysis
+  - Solutions and workarounds
+  - Lessons learned
+
+- **[security.md](drass-terraform/security.md)** - Security implementation (1,290 lines)
+  - Encryption at rest and in transit
+  - IAM roles and policies
+  - Network security
+  - Compliance considerations
+  - Incident response playbooks
+
+### Project Documentation
+
+- **[CONTRIBUTING.md](CONTRIBUTING.md)** - Contribution guidelines
+  - Code standards
+  - Commit conventions
+  - Pull request process
+
+- **[CHANGELOG.md](CHANGELOG.md)** - Version history
+  - Release notes
+  - Breaking changes
+  - Feature additions
+
+### Technical Resources
+
+- 📊 **[Architecture Diagram](docs/architecture-diagram.png)** - Visual system overview
+- 📋 **[Technical Specification](docs/specification.pdf)** - Detailed design specifications
+- 📖 **[Case Study](docs/case-study.pdf)** - Implementation results and analysis
+
+### Module Documentation
+
+Each Terraform module includes its own README:
+- [`modules/vpc/`](drass-terraform/modules/vpc/) - Network infrastructure
+- [`modules/rds-dr/`](drass-terraform/modules/rds-dr/) - Database replication
+- [`modules/s3-dr/`](drass-terraform/modules/s3-dr/) - Object storage replication
+- [`modules/dynamodb-dr/`](drass-terraform/modules/dynamodb-dr/) - NoSQL global tables
+- [`modules/ec2-dr/`](drass-terraform/modules/ec2-dr/) - EC2 snapshot automation
+- [`modules/backup/`](drass-terraform/modules/backup/) - AWS Backup configuration
+- [`modules/monitoring/`](drass-terraform/modules/monitoring/) - CloudWatch alarms
+- [`modules/lambda-failover/`](drass-terraform/modules/lambda-failover/) - Failover automation
 
 ---
 
